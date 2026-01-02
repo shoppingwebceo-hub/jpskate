@@ -290,20 +290,24 @@ export default function Checkout() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {items.map((item) => (
-                      <div
-                        key={item.id}
-                        className="flex justify-between text-sm pb-3 border-b"
-                      >
-                        <div>
-                          <p className="font-medium">{item.name}</p>
-                          <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
+                    {items.map((item) => {
+                      const productName = item.product?.name || "Product";
+                      const productPrice = item.product?.price || 0;
+                      return (
+                        <div
+                          key={item.id}
+                          className="flex justify-between text-sm pb-3 border-b"
+                        >
+                          <div>
+                            <p className="font-medium">{productName}</p>
+                            <p className="text-xs text-gray-600">Qty: {item.quantity}</p>
+                          </div>
+                          <p className="font-medium">
+                            ₹{(productPrice * item.quantity).toFixed(2)}
+                          </p>
                         </div>
-                        <p className="font-medium">
-                          ₹{(item.price * item.quantity).toFixed(2)}
-                        </p>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
 
                   <div className="space-y-2 pt-4 border-t">
