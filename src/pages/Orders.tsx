@@ -4,7 +4,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useLocation } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Layout } from "@/components/Layout";
+import Layout from "@/components/Layout";
 import { orderService } from "@/services/database";
 import { Eye, Package, Check, Truck, Home, Clock } from "lucide-react";
 import { toast } from "sonner";
