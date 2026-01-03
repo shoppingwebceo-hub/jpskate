@@ -30,19 +30,23 @@ export default function AdminLogin() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("[AdminLogin] Form submitted");
     setIsSubmitting(true);
 
     try {
+      console.log("[AdminLogin] Calling login function");
       await login(email, password);
+      console.log("[AdminLogin] Login successful, redirecting");
+
       // Check if user is admin after login
       setTimeout(() => {
         navigate("/admin/dashboard");
       }, 500);
     } catch (error: any) {
-      console.error("Login error:", error);
-      toast.error(
-        error.message || "Invalid credentials. Please check your email and password."
-      );
+      console.error("[AdminLogin] Login error:", error);
+      const errorMsg = error?.message || "Failed to sign in. Please try again.";
+      console.error("[AdminLogin] Error message:", errorMsg);
+      toast.error(errorMsg);
     } finally {
       setIsSubmitting(false);
     }
